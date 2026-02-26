@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/adesso-forge/ds-beta/compare/v1.0.1...v1.0.2) (2026-02-26)
+
+
+### Bug Fixes
+
+* add git identity config to compat-check workflow ([499dabe](https://github.com/adesso-forge/ds-beta/commit/499dabe6d749f290a4133958b6a7b3b1fe52839c))
+
 ## [1.0.1](https://github.com/adesso-forge/ds-beta/compare/v1.0.0...v1.0.1) (2026-02-26)
 
 
