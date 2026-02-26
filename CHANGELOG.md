@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/adesso-forge/ds-beta/compare/v1.2.1...v1.2.2) (2026-02-26)
+
+
+### Bug Fixes
+
+* add repository field to package.json, remove bootstrap step ([547b30a](https://github.com/adesso-forge/ds-beta/commit/547b30ac8569a2a830291ebb784c10d8bb6ad5c1))
+
 ## [1.2.1](https://github.com/adesso-forge/ds-beta/compare/v1.2.0...v1.2.1) (2026-02-26)
 
 
