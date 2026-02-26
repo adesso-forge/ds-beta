@@ -1,5 +1,5 @@
 {
-  "name": "@adesso-forge/ds-beta",
+  "name": "@adesso-forge/adforge-beta",
   "version": "1.1.7",
   "description": "Beta client design system — Warm Playful theme built on adesso forge Core DS",
   "type": "module",
@@ -29,12 +29,12 @@
     "clean": "rm -rf dist/"
   },
   "dependencies": {
-    "@adesso-forge/core-ds": "^1.1.4",
+    "@adesso-forge/adforge-core": "^1.1.4",
     "@awesome.me/webawesome": "^3.2.0",
     "lit": "^3.2.0"
   },
   "devDependencies": {
-    "@adesso-forge/ds-shared": "1.2.2",
+    "@adesso-forge/adforge-shared": "1.2.2",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@storybook/addon-a11y": "10.2.13",
@@ -59,6 +59,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/adesso-forge/ds-beta.git"
+    "url": "https://github.com/adesso-forge/adforge-beta.git"
   }
 }

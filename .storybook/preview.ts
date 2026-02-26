@@ -1,4 +1,4 @@
-import { basePreview } from '@adesso-forge/ds-shared/storybook/preview';
+import { basePreview } from '@adesso-forge/adforge-shared/storybook/preview';
 
 // Load Web Awesome base styles
 import '@awesome.me/webawesome/dist/styles/webawesome.css';

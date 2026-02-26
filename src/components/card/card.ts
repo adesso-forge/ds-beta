@@ -1,5 +1,5 @@
 // beta-card — Tier 3 extension of forge-card with playful styling
-import '@adesso-forge/core-ds';
+import '@adesso-forge/adforge-core';
 import { LitElement, css } from 'lit';
 import { property } from 'lit/decorators.js';
 

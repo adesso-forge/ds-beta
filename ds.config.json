@@ -1,5 +1,5 @@
 {
-  "name": "ds-beta",
+  "name": "adforge-beta",
   "prefix": "beta",
   "description": "Warm Playful client design system",
   "extended": ["card"],

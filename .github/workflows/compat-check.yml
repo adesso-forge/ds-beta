@@ -1,7 +1,7 @@
 name: Upstream Update Check
 on:
   repository_dispatch:
-    types: [core-ds-update]
+    types: [adforge-core-update]
 
 jobs:
   check-compatibility:
@@ -27,17 +27,17 @@ jobs:
           path: ${{ steps.pnpm-cache.outputs.store }}
           key: pnpm-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: pnpm-${{ runner.os }}-
-      - name: Install updated core-ds
+      - name: Install updated adforge-core
         run: |
           VERSION="${{ github.event.client_payload.version }}"
-          pnpm add @adesso-forge/core-ds@$VERSION
+          pnpm add @adesso-forge/adforge-core@$VERSION
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
-      - name: Sync devDependencies from core-ds
+      - name: Sync devDependencies from adforge-core
         run: |
           node -e "
             const fs = require('fs');
-            const core = JSON.parse(fs.readFileSync('node_modules/@adesso-forge/core-ds/package.json', 'utf8'));
+            const core = JSON.parse(fs.readFileSync('node_modules/@adesso-forge/adforge-core/package.json', 'utf8'));
             const local = JSON.parse(fs.readFileSync('package.json', 'utf8'));
             const coreDev = core.devDependencies || {};
             const localDev = local.devDependencies || {};
@@ -52,7 +52,7 @@ jobs:
             }
             if (changed) {
               fs.writeFileSync('package.json', JSON.stringify(local, null, 2) + '\n');
-              console.log('Synced devDependencies from core-ds.');
+              console.log('Synced devDependencies from adforge-core.');
             } else {
               console.log('No devDependency changes to sync.');
             }
@@ -72,11 +72,11 @@ jobs:
             const fs = require('fs');
             const compat = JSON.parse(fs.readFileSync('compatibility.json', 'utf8'));
             compat.compatibility = compat.compatibility || {};
-            compat.compatibility['@adesso-forge/core-ds'] = '^${VERSION}';
+            compat.compatibility['@adesso-forge/adforge-core'] = '^${VERSION}';
             compat.tested = compat.tested || {};
-            compat.tested['@adesso-forge/core-ds'] = compat.tested['@adesso-forge/core-ds'] || [];
-            if (!compat.tested['@adesso-forge/core-ds'].includes('${VERSION}')) {
-              compat.tested['@adesso-forge/core-ds'].push('${VERSION}');
+            compat.tested['@adesso-forge/adforge-core'] = compat.tested['@adesso-forge/adforge-core'] || [];
+            if (!compat.tested['@adesso-forge/adforge-core'].includes('${VERSION}')) {
+              compat.tested['@adesso-forge/adforge-core'].push('${VERSION}');
             }
             fs.writeFileSync('compatibility.json', JSON.stringify(compat, null, 2) + '\n');
           "
@@ -88,24 +88,24 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          BRANCH="fix/core-ds-${VERSION}"
+          BRANCH="fix/adforge-core-${VERSION}"
           git push origin --delete "$BRANCH" 2>/dev/null || true
 
           git checkout -b "$BRANCH"
           git add -A
-          git commit -m "fix: update core-ds to ${VERSION}"
+          git commit -m "fix: update adforge-core to ${VERSION}"
           git push origin "$BRANCH"
 
           if ! gh pr create \
-            --title "fix: update core-ds to ${VERSION}" \
+            --title "fix: update adforge-core to ${VERSION}" \
             --body "## Upstream Update
 
-          **Package:** \`@adesso-forge/core-ds@${VERSION}\`
+          **Package:** \`@adesso-forge/adforge-core@${VERSION}\`
 
           ### Verification
           Automated compatibility check **passed** — build succeeded."; then
             gh issue create \
-              --title "Failed to create PR for core-ds@${VERSION}" \
+              --title "Failed to create PR for adforge-core@${VERSION}" \
               --body "Compatibility check passed but PR creation failed. Manual action needed."
           fi
         env:
@@ -115,7 +115,7 @@ jobs:
         run: |
           VERSION="${{ github.event.client_payload.version }}"
           gh issue create \
-            --title "Incompatible with core-ds@${VERSION}" \
-            --body "Automated compatibility check against @adesso-forge/core-ds@${VERSION} failed. Manual intervention required."
+            --title "Incompatible with adforge-core@${VERSION}" \
+            --body "Automated compatibility check against @adesso-forge/adforge-core@${VERSION} failed. Manual intervention required."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
