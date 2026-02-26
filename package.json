@@ -1,7 +1,7 @@
 {
   "name": "@adesso-forge/ds-beta",
   "version": "1.0.2",
-  "description": "Beta client design system — Warm Playful theme built on adesso forge Core DS",
+  "description": "Beta client design system \u2014 Warm Playful theme built on adesso forge Core DS",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -34,7 +34,7 @@
     "lit": "^3.2.0"
   },
   "devDependencies": {
-    "@adesso-forge/ds-shared": "1.0.0",
+    "@adesso-forge/ds-shared": "1.2.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@storybook/addon-a11y": "^10.0.0",
