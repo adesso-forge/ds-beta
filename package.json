@@ -1,7 +1,7 @@
 {
   "name": "@adesso-forge/ds-beta",
-  "version": "1.0.2",
-  "description": "Beta client design system \u2014 Warm Playful theme built on adesso forge Core DS",
+  "version": "1.1.0",
+  "description": "Beta client design system — Warm Playful theme built on adesso forge Core DS",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

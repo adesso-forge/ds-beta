@@ -1,3 +1,16 @@
+# [1.1.0](https://github.com/adesso-forge/ds-beta/compare/v1.0.2...v1.1.0) (2026-02-26)
+
+
+### Bug Fixes
+
+* pin ds-shared to published version 1.2.1 ([e9bc812](https://github.com/adesso-forge/ds-beta/commit/e9bc812fbeab062cd802909a0ff585c2b2f79783))
+* use PACKAGES_TOKEN for cross-repo package access in CI ([19a732b](https://github.com/adesso-forge/ds-beta/commit/19a732b7280f3019b7f1a9929c8e8cd7bc13269c))
+
+
+### Features
+
+* add Renovate config and unified compat-check for upstream updates ([e13f039](https://github.com/adesso-forge/ds-beta/commit/e13f0390227b51271b277779999bcc3c82e7e048))
+
 ## [1.0.2](https://github.com/adesso-forge/ds-beta/compare/v1.0.1...v1.0.2) (2026-02-26)
 
 
