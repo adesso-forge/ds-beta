@@ -1,7 +1,7 @@
 name: Upstream Update Check
 on:
   repository_dispatch:
-    types: [core-ds-update, ds-shared-update]
+    types: [core-ds-update]
 
 jobs:
   check-compatibility:
@@ -27,37 +27,22 @@ jobs:
           path: ${{ steps.pnpm-cache.outputs.store }}
           key: pnpm-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: pnpm-${{ runner.os }}-
-      - name: Determine update type
-        id: update
+      - name: Install updated core-ds
         run: |
-          EVENT="${{ github.event.action }}"
           VERSION="${{ github.event.client_payload.version }}"
-          if [ "$EVENT" = "core-ds-update" ]; then
-            echo "package=@adesso-forge/core-ds" >> "$GITHUB_OUTPUT"
-            echo "dep_flag=" >> "$GITHUB_OUTPUT"
-            echo "slug=core-ds" >> "$GITHUB_OUTPUT"
-          elif [ "$EVENT" = "ds-shared-update" ]; then
-            echo "package=@adesso-forge/ds-shared" >> "$GITHUB_OUTPUT"
-            echo "dep_flag=-D" >> "$GITHUB_OUTPUT"
-            echo "slug=ds-shared" >> "$GITHUB_OUTPUT"
-          fi
-          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-      - name: Install with updated dependency
-        run: |
-          pnpm add ${{ steps.update.outputs.dep_flag }} ${{ steps.update.outputs.package }}@${{ steps.update.outputs.version }}
+          pnpm add @adesso-forge/core-ds@$VERSION
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
-      - name: Sync shared devDependencies
-        if: steps.update.outputs.slug == 'ds-shared'
+      - name: Sync devDependencies from core-ds
         run: |
           node -e "
             const fs = require('fs');
-            const shared = JSON.parse(fs.readFileSync('node_modules/@adesso-forge/ds-shared/package.json', 'utf8'));
+            const core = JSON.parse(fs.readFileSync('node_modules/@adesso-forge/core-ds/package.json', 'utf8'));
             const local = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-            const sharedDev = shared.devDependencies || {};
+            const coreDev = core.devDependencies || {};
             const localDev = local.devDependencies || {};
             let changed = false;
-            for (const [pkg, version] of Object.entries(sharedDev)) {
+            for (const [pkg, version] of Object.entries(coreDev)) {
               if (pkg.startsWith('@adesso-forge/')) continue;
               if (localDev[pkg] && localDev[pkg] !== version) {
                 console.log(pkg + ': ' + localDev[pkg] + ' -> ' + version);
@@ -67,7 +52,7 @@ jobs:
             }
             if (changed) {
               fs.writeFileSync('package.json', JSON.stringify(local, null, 2) + '\n');
-              console.log('Synced devDependencies from ds-shared.');
+              console.log('Synced devDependencies from core-ds.');
             } else {
               console.log('No devDependency changes to sync.');
             }
@@ -80,9 +65,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
       - name: Update compatibility.json
-        if: steps.build.outcome == 'success' && steps.update.outputs.slug == 'core-ds'
+        if: steps.build.outcome == 'success'
         run: |
-          VERSION="${{ steps.update.outputs.version }}"
+          VERSION="${{ github.event.client_payload.version }}"
           node -e "
             const fs = require('fs');
             const compat = JSON.parse(fs.readFileSync('compatibility.json', 'utf8'));
@@ -98,31 +83,29 @@ jobs:
       - name: Create PR if passing
         if: steps.build.outcome == 'success'
         run: |
-          SLUG="${{ steps.update.outputs.slug }}"
-          VERSION="${{ steps.update.outputs.version }}"
-          PACKAGE="${{ steps.update.outputs.package }}"
+          VERSION="${{ github.event.client_payload.version }}"
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          BRANCH="fix/${SLUG}-${VERSION}"
+          BRANCH="fix/core-ds-${VERSION}"
           git push origin --delete "$BRANCH" 2>/dev/null || true
 
           git checkout -b "$BRANCH"
           git add -A
-          git commit -m "fix: update ${SLUG} to ${VERSION}"
+          git commit -m "fix: update core-ds to ${VERSION}"
           git push origin "$BRANCH"
 
           if ! gh pr create \
-            --title "fix: update ${SLUG} to ${VERSION}" \
+            --title "fix: update core-ds to ${VERSION}" \
             --body "## Upstream Update
 
-          **Package:** \`${PACKAGE}@${VERSION}\`
+          **Package:** \`@adesso-forge/core-ds@${VERSION}\`
 
           ### Verification
           Automated compatibility check **passed** — build succeeded."; then
             gh issue create \
-              --title "Failed to create PR for ${SLUG}@${VERSION}" \
+              --title "Failed to create PR for core-ds@${VERSION}" \
               --body "Compatibility check passed but PR creation failed. Manual action needed."
           fi
         env:
@@ -130,10 +113,9 @@ jobs:
       - name: Create issue if failing
         if: steps.build.outcome == 'failure'
         run: |
-          SLUG="${{ steps.update.outputs.slug }}"
-          VERSION="${{ steps.update.outputs.version }}"
+          VERSION="${{ github.event.client_payload.version }}"
           gh issue create \
-            --title "Incompatible with ${SLUG}@${VERSION}" \
-            --body "Automated compatibility check against ${{ steps.update.outputs.package }}@${VERSION} failed. Manual intervention required."
+            --title "Incompatible with core-ds@${VERSION}" \
+            --body "Automated compatibility check against @adesso-forge/core-ds@${VERSION} failed. Manual intervention required."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
