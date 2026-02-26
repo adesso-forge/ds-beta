@@ -48,7 +48,7 @@ jobs:
           pnpm add ${{ steps.update.outputs.dep_flag }} ${{ steps.update.outputs.package }}@${{ steps.update.outputs.version }}
           pnpm build
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
       - name: Update compatibility.json
         if: steps.build.outcome == 'success' && steps.update.outputs.slug == 'core-ds'
         run: |
