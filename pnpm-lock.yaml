@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@adesso-forge/core-ds':
-        specifier: ^1.0.0
-        version: 1.0.3(@floating-ui/utils@0.2.10)(@types/react@19.2.14)
+        specifier: ^1.1.0
+        version: 1.1.0(@floating-ui/utils@0.2.10)(@types/react@19.2.14)
       '@awesome.me/webawesome':
         specifier: ^3.2.0
         version: 3.2.1(@floating-ui/utils@0.2.10)(@types/react@19.2.14)
@@ -66,8 +66,8 @@ packages:
   '@actions/io@3.0.2':
     resolution: {integrity: sha512-nRBchcMM+QK1pdjO7/idu86rbJI5YHUKCvKs0KxnSYbVe3F51UfGxuZX4Qy/fWlp6l7gWFwIkrOzN+oUK03kfw==}
 
-  '@adesso-forge/core-ds@1.0.3':
-    resolution: {integrity: sha512-sP6iysp8P8NdBryJHi7HPHBT1jOR50tonO5Voaz8VtqFN7d3GGQM13QXJ9DZ+uE9iv9G9L+hRc+JC8dwcx2f/A==, tarball: https://npm.pkg.github.com/download/@adesso-forge/core-ds/1.0.3/7c3813c7358724ef25c4d32c17fb53e2d0b60c29}
+  '@adesso-forge/core-ds@1.1.0':
+    resolution: {integrity: sha512-6SPduvjAmVytmJz3jJ+d5CBK92VeblccnLD2IRqsD8O+FzUb/1TEw5gueMEkBR1tS5E1g0mPHzdlG9bcJV5OEQ==, tarball: https://npm.pkg.github.com/download/@adesso-forge/core-ds/1.1.0/6bd4040d978921831d6654a46305a07f7806e7d4}
     engines: {node: '>=22.0.0'}
 
   '@adesso-forge/ds-shared@1.2.1':
@@ -2137,7 +2137,7 @@ snapshots:
 
   '@actions/io@3.0.2': {}
 
-  '@adesso-forge/core-ds@1.0.3(@floating-ui/utils@0.2.10)(@types/react@19.2.14)':
+  '@adesso-forge/core-ds@1.1.0(@floating-ui/utils@0.2.10)(@types/react@19.2.14)':
     dependencies:
       '@awesome.me/webawesome': 3.2.1(@floating-ui/utils@0.2.10)(@types/react@19.2.14)
       lit: 3.3.2
