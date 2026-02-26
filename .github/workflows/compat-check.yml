@@ -59,17 +59,46 @@ jobs:
       - name: Create PR if passing
         if: steps.build.outcome == 'success'
         run: |
+          VERSION="${{ github.event.client_payload.version }}"
+
+          # Clean up checked-out repos
           rm -rf ds-shared ds-core
+
+          # Revert pnpm.overrides injection from package.json
+          git checkout -- package.json
           git checkout -- pnpm-lock.yaml || true
+
+          # Update compatibility.json with the new tested version
+          node -e "
+            const fs = require('fs');
+            const compat = JSON.parse(fs.readFileSync('compatibility.json', 'utf8'));
+            compat.compatibility = compat.compatibility || {};
+            compat.compatibility['@adesso-forge/core-ds'] = '^${VERSION}';
+            compat.tested = compat.tested || {};
+            compat.tested['@adesso-forge/core-ds'] = compat.tested['@adesso-forge/core-ds'] || [];
+            if (!compat.tested['@adesso-forge/core-ds'].includes('${VERSION}')) {
+              compat.tested['@adesso-forge/core-ds'].push('${VERSION}');
+            }
+            fs.writeFileSync('compatibility.json', JSON.stringify(compat, null, 2) + '\n');
+          "
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b chore/core-ds-${{ github.event.client_payload.version }}
-          git add -A
-          git commit -m "chore: bump @adesso-forge/core-ds to ${{ github.event.client_payload.version }}" --allow-empty
-          git push origin chore/core-ds-${{ github.event.client_payload.version }}
+          git checkout -b fix/core-ds-$VERSION
+          git add compatibility.json
+          git commit -m "fix: update core-ds compatibility to $VERSION"
+          git push origin fix/core-ds-$VERSION
           gh pr create \
-            --title "chore: bump core-ds to ${{ github.event.client_payload.version }}" \
-            --body "Automated compatibility check passed. Build succeeded."
+            --title "fix: update core-ds compatibility to $VERSION" \
+            --body "## Core DS Update
+
+          **New version:** \`@adesso-forge/core-ds@$VERSION\`
+
+          ### Changes
+          - Updated \`compatibility.json\` to track tested version \`$VERSION\`
+
+          ### Verification
+          Automated compatibility check **passed** — build succeeded against core-ds@$VERSION."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create issue if failing

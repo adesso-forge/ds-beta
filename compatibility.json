@@ -1,5 +1,12 @@
 {
-  "coreDSVersion": "^1.0.0",
-  "webAwesomeVersion": "^3.2.0",
-  "lastVerified": "2025-02-26"
+  "package": "@adesso-forge/ds-beta",
+  "version": "1.0.0",
+  "compatibility": {
+    "@adesso-forge/core-ds": "^1.0.0",
+    "@awesome.me/webawesome": "^3.2.0"
+  },
+  "tested": {
+    "@adesso-forge/core-ds": ["1.0.0"],
+    "@awesome.me/webawesome": ["3.2.1"]
+  }
 }
