@@ -2,14 +2,15 @@
   "package": "@adesso-forge/adforge-beta",
   "version": "1.0.0",
   "compatibility": {
-    "@adesso-forge/adforge-core": "^1.1.3",
+    "@adesso-forge/adforge-core": "^1.1.6",
     "@awesome.me/webawesome": "^3.2.0"
   },
   "tested": {
     "@adesso-forge/adforge-core": [
       "1.0.0",
       "1.0.2",
-      "1.1.3"
+      "1.1.3",
+      "1.1.6"
     ],
     "@awesome.me/webawesome": [
       "3.2.1"
