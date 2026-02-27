@@ -11,6 +11,5 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () =>
-    html`<beta-qr-code value="https://webawesome.com"></beta-qr-code>`,
+  render: () => html`<beta-qr-code value="https://webawesome.com"></beta-qr-code>`,
 };

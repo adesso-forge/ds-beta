@@ -12,5 +12,9 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: () =>
-    html`<beta-breadcrumb><beta-breadcrumb-item>Home</beta-breadcrumb-item><beta-breadcrumb-item>Products</beta-breadcrumb-item><beta-breadcrumb-item>Shoes</beta-breadcrumb-item></beta-breadcrumb>`,
+    html`<beta-breadcrumb
+      ><beta-breadcrumb-item>Home</beta-breadcrumb-item
+      ><beta-breadcrumb-item>Products</beta-breadcrumb-item
+      ><beta-breadcrumb-item>Shoes</beta-breadcrumb-item></beta-breadcrumb
+    >`,
 };

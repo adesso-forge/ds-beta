@@ -12,5 +12,8 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: () =>
-    html`<beta-dropdown><beta-button slot="trigger" caret>Dropdown</beta-button><div style="padding:0.5rem">Dropdown content</div></beta-dropdown>`,
+    html`<beta-dropdown
+      ><beta-button slot="trigger" caret>Dropdown</beta-button>
+      <div style="padding:0.5rem">Dropdown content</div></beta-dropdown
+    >`,
 };

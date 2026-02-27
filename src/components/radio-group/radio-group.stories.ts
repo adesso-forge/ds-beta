@@ -12,5 +12,8 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: () =>
-    html`<beta-radio-group label="Select an option" value="1"><beta-radio value="1">Option 1</beta-radio><beta-radio value="2">Option 2</beta-radio><beta-radio value="3">Option 3</beta-radio></beta-radio-group>`,
+    html`<beta-radio-group label="Select an option" value="1"
+      ><beta-radio value="1">Option 1</beta-radio><beta-radio value="2">Option 2</beta-radio
+      ><beta-radio value="3">Option 3</beta-radio></beta-radio-group
+    >`,
 };

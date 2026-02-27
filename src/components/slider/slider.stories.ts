@@ -11,6 +11,5 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () =>
-    html`<beta-slider label="Volume" value="50"></beta-slider>`,
+  render: () => html`<beta-slider label="Volume" value="50"></beta-slider>`,
 };

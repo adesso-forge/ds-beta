@@ -11,6 +11,5 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () =>
-    html`<beta-copy-button value="Text to copy"></beta-copy-button>`,
+  render: () => html`<beta-copy-button value="Text to copy"></beta-copy-button>`,
 };

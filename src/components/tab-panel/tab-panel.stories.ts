@@ -11,6 +11,5 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () =>
-    html`<beta-tab-panel name="panel-1">Panel content here</beta-tab-panel>`,
+  render: () => html`<beta-tab-panel name="panel-1">Panel content here</beta-tab-panel>`,
 };

@@ -11,6 +11,5 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () =>
-    html`<beta-number-input label="Quantity" value="5"></beta-number-input>`,
+  render: () => html`<beta-number-input label="Quantity" value="5"></beta-number-input>`,
 };

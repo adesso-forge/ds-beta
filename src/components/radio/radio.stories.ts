@@ -11,6 +11,5 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () =>
-    html`<beta-radio value="1">Radio option</beta-radio>`,
+  render: () => html`<beta-radio value="1">Radio option</beta-radio>`,
 };

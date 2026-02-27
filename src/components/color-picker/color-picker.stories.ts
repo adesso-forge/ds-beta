@@ -11,6 +11,5 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () =>
-    html`<beta-color-picker label="Color"></beta-color-picker>`,
+  render: () => html`<beta-color-picker label="Color"></beta-color-picker>`,
 };

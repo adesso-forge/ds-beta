@@ -12,5 +12,19 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: () =>
-    html`<beta-carousel pagination><beta-carousel-item><div style="display:flex;align-items:center;justify-content:center;height:200px;background:var(--wa-color-primary-100)">Slide 1</div></beta-carousel-item><beta-carousel-item><div style="display:flex;align-items:center;justify-content:center;height:200px;background:var(--wa-color-primary-200)">Slide 2</div></beta-carousel-item></beta-carousel>`,
+    html`<beta-carousel pagination
+      ><beta-carousel-item
+        ><div
+          style="display:flex;align-items:center;justify-content:center;height:200px;background:var(--wa-color-primary-100)"
+        >
+          Slide 1
+        </div></beta-carousel-item
+      ><beta-carousel-item
+        ><div
+          style="display:flex;align-items:center;justify-content:center;height:200px;background:var(--wa-color-primary-200)"
+        >
+          Slide 2
+        </div></beta-carousel-item
+      ></beta-carousel
+    >`,
 };

@@ -11,6 +11,5 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () =>
-    html`<beta-drawer label="Drawer" open>Drawer content goes here.</beta-drawer>`,
+  render: () => html`<beta-drawer label="Drawer" open>Drawer content goes here.</beta-drawer>`,
 };

@@ -30,7 +30,9 @@ export const Elevated: Story = {
 
 export const Gallery: Story = {
   render: () =>
-    html`<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 800px;">
+    html`<div
+      style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 800px;"
+    >
       ${[1, 2, 3].map(
         (i) =>
           html`<beta-card ?elevated=${i === 2}>

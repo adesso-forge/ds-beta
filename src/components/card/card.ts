@@ -17,8 +17,9 @@ export class BetaCard extends (ForgeCard as unknown as typeof LitElement) {
       :host {
         --wa-card-border-radius: var(--wa-border-radius-l);
         border-radius: var(--wa-border-radius-l);
-        transition: transform var(--wa-transition-medium) ease,
-                    box-shadow var(--wa-transition-medium) ease;
+        transition:
+          transform var(--wa-transition-medium) ease,
+          box-shadow var(--wa-transition-medium) ease;
       }
 
       :host(:hover) {

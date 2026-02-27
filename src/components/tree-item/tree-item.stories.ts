@@ -11,6 +11,5 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () =>
-    html`<beta-tree-item>Tree Item</beta-tree-item>`,
+  render: () => html`<beta-tree-item>Tree Item</beta-tree-item>`,
 };

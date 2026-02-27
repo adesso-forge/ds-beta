@@ -11,6 +11,5 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () =>
-    html`<beta-badge>Badge</beta-badge>`,
+  render: () => html`<beta-badge>Badge</beta-badge>`,
 };

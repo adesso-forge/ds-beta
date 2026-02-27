@@ -12,5 +12,11 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: () =>
-    html`<beta-resize-observer><div style="overflow:auto;resize:both;border:2px dashed var(--wa-color-neutral-300);padding:1rem;min-width:100px;min-height:100px">Resize me</div></beta-resize-observer>`,
+    html`<beta-resize-observer
+      ><div
+        style="overflow:auto;resize:both;border:2px dashed var(--wa-color-neutral-300);padding:1rem;min-width:100px;min-height:100px"
+      >
+        Resize me
+      </div></beta-resize-observer
+    >`,
 };

@@ -11,6 +11,5 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () =>
-    html`<beta-progress-bar value="60" label="Progress"></beta-progress-bar>`,
+  render: () => html`<beta-progress-bar value="60" label="Progress"></beta-progress-bar>`,
 };
